@@ -251,18 +251,27 @@ Docker Compose — это, в умелых руках, весьма мощный
 
 Создадим docker-compose.yml
 
+
+
 ```
+# Файл docker-compose должен начинаться с тега версии.
+
 version: "3.9" 
+
+# Следует учитывать, что docker-composes работает с сервисами.
+# 1 сервис = 1 контейнер.
+# Сервисом может быть клиент, сервер, сервер баз данных...
+# Раздел, в котором будут описаны сервисы, начинается с 'services'.
+
 services: 
   ubuntu-seminars: 
     container_name: ubuntu-seminars # имя контейнера 
     platform: linux/amd64  
     image: ubuntu:focal # название образа 
-    ports: # какие порты необходимо прокинуть, будут доступны 
-localhost:port 
+    ports: # какие порты необходимо прокинуть, будут доступны localhost:port 
       - 8080:8080  
-    stdin_open: true 
-    tty: true 
+    stdin_open: true  # docker run -i
+    tty: true         # docker run -t
 ```
 
 Запустим контейнер и попробуем к нему подключиться
